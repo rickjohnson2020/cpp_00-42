@@ -43,13 +43,16 @@ std::string PhoneBook::getName(void)
 
 int main()
 {
-	PhoneBook instance;
+	// PhoneBook instance;
 	// instance.foo = 10;
 	// std::cout << "instance.foo: " << instance.foo << std::endl;
 	// instance.bar();
 
-	instance.setAge(32);
-	instance.setName("Riku");
-	std::cout << instance.getName() << "(" << instance.getAge() << ")" << std::endl;
-	return 0;
+	// instance.setAge(32);
+	// instance.setName("Riku");
+	// std::cout << instance.getName() << "(" << instance.getAge() << ")" << std::endl;
+
+	std::vector <
+
+		return 0;
 }
