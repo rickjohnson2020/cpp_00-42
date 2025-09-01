@@ -2,23 +2,20 @@
 #define PHONEBOOK_HPP
 
 #include <string>
+#include "Contact.hpp"
 
 class PhoneBook
 {
 private:
-	int age;
-	std::string name;
+	Contact contact[8];
 
 public:
 	PhoneBook(void);
 	~PhoneBook(void);
 
-	int foo;
-	void bar(void);
-	void setAge(int age);
-	void setName(std::string name);
-	int getAge(void);
-	std::string getName(void);
+	void addContact(int i);
+	void searchContact();
+	void exit();
 };
 
 #endif
