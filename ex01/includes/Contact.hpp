@@ -3,8 +3,7 @@
 
 #include <string>
 
-class Contact
-{
+class Contact {
 private:
 	std::string _firstName;
 	std::string _lastName;
@@ -18,7 +17,7 @@ public:
 
 	void setFirstName(std::string _firstName);
 	void setLastName(std::string _lastName);
-	void setNickName(std::string _nickname);
+	void setNickname(std::string _nickname);
 	void setPhoneNumber(std::string _phoneNumber);
 	void setDarkestSecret(std::string _darkestSecret);
 
