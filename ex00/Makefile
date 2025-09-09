@@ -3,7 +3,7 @@ NAME = megaphone
 BUILD_DIR = build
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -std=c++98 -Wall -Wextra -Werror
 
 SRCS = megaphone.cpp
 OBJS = $(addprefix $(BUILD_DIR)/, $(notdir $(SRCS:.cpp=.o)))
