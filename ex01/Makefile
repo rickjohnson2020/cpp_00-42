@@ -4,7 +4,7 @@ SRC_DIR = srcs
 BUILD_DIR = build
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -std=c++98 -Wall -Wextra -Werror
 
 SRC_FILES = Contact.cpp PhoneBook.cpp main.c
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
