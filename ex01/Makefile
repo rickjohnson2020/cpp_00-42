@@ -8,7 +8,7 @@ CFLAGS = -std=c++98 -Wall -Wextra -Werror
 
 SRC_FILES = Contact.cpp PhoneBook.cpp main.cpp
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
-OBJS = $(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.o, $(SRCS))
+OBJS = $(patsubst $(SRC_DIR)/%.cpp, $(BUILD_DIR)/%.o, $(SRCS))
 
 RM = rm -f
 
