@@ -3,20 +3,19 @@
 #include <string>
 #include <iomanip>
 
-PhoneBook::PhoneBook(void) {
-	std::cout << "Constructor called" << std::endl;
+PhoneBook::PhoneBook() {
 	return;
 }
 
-PhoneBook::~PhoneBook(void) {
-	std::cout << "Destructor called" << std::endl;
+PhoneBook::~PhoneBook() {
 	return;
 }
 
-void setContact(Contact *contact, std::string output, std::string *input) {
+int setContact(Contact *contact, std::string output, std::string *input) {
 	while (true) {
 		std::cout << output;
-		std::getline(std::cin, *input);
+		if (!(std::getline(std::cin, *input)))
+			return 0;
 		if (*input == "") {
 			std::cout << "This field can't be empty. Enter again." << std::endl;
 			continue;
@@ -32,9 +31,10 @@ void setContact(Contact *contact, std::string output, std::string *input) {
 			} else if (output == "Darkest secret: ") {
 				contact->setDarkestSecret(*input);
 			}
-			return;
 		}
+		break;
 	}
+	return 1;
 }
 
 void PhoneBook::addContact(int i) {
@@ -46,11 +46,11 @@ void PhoneBook::addContact(int i) {
 	std::string darkestSecret;
 
 	std::cin.ignore();
-	setContact(&contact, "First name: ", &firstName);
-	setContact(&contact, "Last name: ", &lastName);
-	setContact(&contact, "Nickname: ", &nickname);
-	setContact(&contact, "Phone number: ", &phoneNumber);
-	setContact(&contact, "Darkest secret: ", &darkestSecret);
+	if (!(setContact(&contact, "First name: ", &firstName))) return;
+	if (!(setContact(&contact, "Last name: ", &lastName))) return;
+	if (!(setContact(&contact, "Nickname: ", &nickname))) return;
+	if (!(setContact(&contact, "Phone number: ", &phoneNumber))) return;
+	if (!(setContact(&contact, "Darkest secret: ", &darkestSecret))) return;
 
 	this->contact[i] = contact;
 	std::cout << "The contact has successfully been added." << std::endl;
@@ -74,16 +74,26 @@ void PhoneBook::searchContact(int contactCount) {
 		printColumn(this->contact[i].getNickname());
 		std::cout << "|" << std::endl;
 	}
-	int index;
-	std::cout << "Index: ";
-	std::cin >> index;
-	if (index > contactCount - 1 || index < 0) {
-		std::cout << "Wrong index." << std::endl;
-		return;
+	int idx = -1;
+	while (true) {
+		std::string input;
+		std::cout << "Index: ";
+		if (!(std::cin >> input))
+			return;
+		if (!(input.size() == 1 && input[0] >= '0' && input[0] <= '7')) {
+			std::cout << "Invalid input. Enter again." << std::endl;
+			continue;
+		}
+		idx = input[0] - '0';
+		if (idx > contactCount - 1 || idx < 0) {
+			std::cout << "Invalid input. Enter again." << std::endl;
+			continue;
+		}
+		break;
 	}
-	std::cout << "First name: " << this->contact[index].getFirstName() << std::endl;
-	std::cout << "Last name: " << this->contact[index].getLastName() << std::endl;
-	std::cout << "Nickname: " << this->contact[index].getNickname() << std::endl;
-	std::cout << "Phone number: " << this->contact[index].getPhoneNumber() << std::endl;
-	std::cout << "Darkest secret: " << this->contact[index].getDarkestSecret() << std::endl;
+	std::cout << "First name: " << this->contact[idx].getFirstName() << std::endl;
+	std::cout << "Last name: " << this->contact[idx].getLastName() << std::endl;
+	std::cout << "Nickname: " << this->contact[idx].getNickname() << std::endl;
+	std::cout << "Phone number: " << this->contact[idx].getPhoneNumber() << std::endl;
+	std::cout << "Darkest secret: " << this->contact[idx].getDarkestSecret() << std::endl;
 }

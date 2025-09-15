@@ -9,7 +9,9 @@ int main() {
 	int contactIndex = 0;
 	int count = 0;
 	while (true) {
-		std::cin >> prompt;
+		if (!(std::cin >> prompt)) {
+			break;
+		}
 		if (prompt == "ADD") {
 			if (contactIndex > 7) {
 				contactIndex -= 8;
@@ -28,4 +30,5 @@ int main() {
 			return 0;
 		}
 	}
+	return 0;
 }
