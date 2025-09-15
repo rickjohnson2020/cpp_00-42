@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <limits>
 
 PhoneBook::PhoneBook() {
 	return;
@@ -45,7 +46,7 @@ void PhoneBook::addContact(int i) {
 	std::string phoneNumber;
 	std::string darkestSecret;
 
-	std::cin.ignore();
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
 	if (!(setContact(&contact, "First name: ", &firstName))) return;
 	if (!(setContact(&contact, "Last name: ", &lastName))) return;
 	if (!(setContact(&contact, "Nickname: ", &nickname))) return;
